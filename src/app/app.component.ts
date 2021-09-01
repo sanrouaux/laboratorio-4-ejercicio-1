@@ -24,8 +24,14 @@ export class AppComponent {
   }
 
   calculate() {
-    this.sum = String(parseInt(this.ageOne) + parseInt(this.ageTwo));
-    this.average = String((parseInt(this.ageOne) + parseInt(this.ageTwo)) / 2);
+    if(this.validateInput()) {
+      this.sum = String(parseInt(this.ageOne) + parseInt(this.ageTwo));
+      this.average = String((parseInt(this.ageOne) + parseInt(this.ageTwo)) / 2);
+    }
+    else {
+      alert('Invalid input');
+      this.clean();
+    }
   }
 
   clean() {
@@ -33,6 +39,15 @@ export class AppComponent {
     this.ageTwo = '';
     this.sum = '';
     this.average = '';
+  }
+
+  validateInput() {
+    if(!isNaN(parseInt(this.ageOne)) && !isNaN(parseInt(this.ageTwo))) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
 }
